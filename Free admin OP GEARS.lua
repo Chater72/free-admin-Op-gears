@@ -11,12 +11,60 @@ Tab.BackgroundColor3 = Color3.new(1, 1, 1) -- Цвет фона вкладок (
 Tab.Position = UDim2.new(0.5, -200, 0.5, -250) -- Позиция центрированного меню
 Tab.Size = UDim2.new(0, 400, 0, 500) -- Увеличение размера вкладок
 Tab.Active = true
-Tab.ClipsDescendants = true -- Обрезать потомков в пределах родительского элемента
+Tab.ClipsDescendants = true
+Tab.Visible = false -- Скрываем меню по умолчанию
+
+-- Функция для перетаскивания
+local function makeDraggable(frame)
+    local dragToggle = nil
+    local dragSpeed = 0.1
+    local dragInput = nil
+    local startPos = frame.Position
+
+    frame.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragToggle = true
+            dragInput = input
+            local mousePos = UDim2.new(input.Position.X, 0, input.Position.Y, 0)
+
+            while dragToggle do
+                game:GetService("RunService").RenderStepped:Wait()
+                local delta = mousePos - UDim2.new(0, input.Position.X, 0, input.Position.Y)
+                frame.Position = startPos + UDim2.new(delta.X.Scale, delta.X.Offset, delta.Y.Scale, delta.Y.Offset)
+            end
+        end
+    end)
+
+    frame.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragToggle = false
+        end
+    end)
+end
+
+makeDraggable(Tab) -- Делаем вкладки перетаскиваемыми
+
+-- Кнопка для открытия/закрытия меню
+local ToggleButton = Instance.new("TextButton")
+ToggleButton.Parent = Menu
+ToggleButton.Size = UDim2.new(0, 100, 0, 50) -- Изменено для компактности
+ToggleButton.Position = UDim2.new(1, -110, 0, 20) -- Перемещено в правый угол
+ToggleButton.Text = "Открыть меню"
+ToggleButton.TextSize = 20
+
+-- Убираем перетаскивание у кнопки
+-- makeDraggable(ToggleButton) -- Удалено, чтобы не перетаскивалось
+
+ToggleButton.MouseButton1Click:Connect(function()
+    Tab.Visible = not Tab.Visible
+    ToggleButton.Text = Tab.Visible and "Закрыть меню" or "Открыть меню"
+end)
 
 -- Перехват клавиши Insert для открытия меню
 game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
     if not gameProcessed and input.KeyCode == Enum.KeyCode.Insert then
         Tab.Visible = not Tab.Visible
+        ToggleButton.Text = Tab.Visible and "Закрыть меню" or "Открыть меню"
     end
 end)
 
