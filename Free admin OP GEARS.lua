@@ -47,7 +47,7 @@ makeDraggable(Tab) -- Делаем вкладки перетаскиваемым
 local ToggleButton = Instance.new("TextButton")
 ToggleButton.Parent = Menu
 ToggleButton.Size = UDim2.new(0, 120, 0, 60) -- Увеличен размер кнопки
-ToggleButton.Position = UDim2.new(1, -130, 0, 20) -- Перемещено в правый угол
+ToggleButton.Position = UDim2.new(1, -130, 0, 70) -- Перемещено в правый угол
 ToggleButton.Text = "Меню"
 ToggleButton.TextSize = 24 -- Увеличение размера текста
 ToggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Цвет кнопки открытия (зеленый)
@@ -110,3 +110,18 @@ AddButton("Запуск Елки", 330296114)
 AddButton("Запуск Перчи", 168142620)
 AddButton("Помощник", 84417104)
 AddButton("Справа Нуб", 22960435)
+
+-- Добавление кнопки "Троллинг"
+local TrollButton = Instance.new("TextButton")
+TrollButton.Parent = Tab
+TrollButton.Size = UDim2.new(0.4, 0, 0, 40) -- Увеличиваем высоту кнопки
+TrollButton.Position = UDim2.new(0.05 + (0.45 * ((#Tab:GetChildren() - 1) % 2)), 0, 0, math.floor((#Tab:GetChildren() - 1) / 2) * 45) -- Изменено для двух колонок
+TrollButton.Text = "Троллинг"
+TrollButton.TextSize = 22 -- Увеличение размера текста
+TrollButton.BorderSizePixel = 2 -- Устанавливаем рамку вокруг кнопки
+TrollButton.BackgroundColor3 = Color3.new(math.random(), math.random(), math.random()) -- Цвет фона кнопок (случайный)
+TrollButton.BorderColor3 = Color3.new(0, 0, 0) -- Цвет рамки кнопок (по желанию)
+
+TrollButton.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Chater72/Hack-break-in-Owner-Notion_scripter-olik_prfi1234/refs/heads/main/Break%20in%20free%20roles.lua"))()
+end)
