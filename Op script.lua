@@ -111,6 +111,7 @@ AddButton("Запуск Перчи", 168142620)
 AddButton("Помощник", 84417104)
 AddButton("Справа Нуб", 22960435)
 AddButton("Пистолет бога", 17237675)
+AddButton("Ловушка", 63253706)
 -- Добавление кнопки "Троллинг"
 local TrollButton = Instance.new("TextButton")
 TrollButton.Parent = Tab
