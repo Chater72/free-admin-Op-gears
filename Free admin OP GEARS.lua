@@ -9,7 +9,7 @@ Tab.Name = "Tab"
 Tab.Parent = Menu
 Tab.BackgroundColor3 = Color3.new(0, 1, 0) -- Цвет фона вкладок (зеленый)
 Tab.Position = UDim2.new(0.5, -200, 0.5, -250) -- Позиция центрированного меню
-Tab.Size = UDim2.new(0, 400, 0, 600) -- Увеличение размера вкладок
+Tab.Size = UDim2.new(0, 600, 0, 600) -- Увеличение размера вкладок
 Tab.Active = true
 Tab.ClipsDescendants = true
 Tab.Visible = false -- Скрываем меню по умолчанию
@@ -71,8 +71,8 @@ end)
 local function AddButton(Name, GearId)
     local Button = Instance.new("TextButton")
     Button.Parent = Tab
-    Button.Size = UDim2.new(0.4, 0, 0, 40) -- Увеличиваем высоту кнопки
-    Button.Position = UDim2.new(0.05 + (0.45 * ((#Tab:GetChildren() - 1) % 2)), 0, 0, math.floor((#Tab:GetChildren() - 1) / 2) * 45) -- Изменено для двух колонок
+    Button.Size = UDim2.new(0.28, 0, 0, 40) -- Увеличиваем ширину кнопки
+    Button.Position = UDim2.new(0.05 + (0.32 * ((#Tab:GetChildren() - 1) % 3)), 0, 0, math.floor((#Tab:GetChildren() - 1) / 3) * 45) -- Изменено для трех колонок
     Button.Text = Name
     Button.TextSize = 22 -- Увеличение размера текста
     Button.BorderSizePixel = 2 -- Устанавливаем рамку вокруг кнопки
@@ -114,8 +114,8 @@ AddButton("Справа Нуб", 22960435)
 -- Добавление кнопки "Троллинг"
 local TrollButton = Instance.new("TextButton")
 TrollButton.Parent = Tab
-TrollButton.Size = UDim2.new(0.4, 0, 0, 40) -- Увеличиваем высоту кнопки
-TrollButton.Position = UDim2.new(0.05 + (0.45 * ((#Tab:GetChildren() - 1) % 2)), 0, 0, math.floor((#Tab:GetChildren() - 1) / 2) * 45) -- Изменено для двух колонок
+TrollButton.Size = UDim2.new(0.28, 0, 0, 40) -- Увеличиваем высоту кнопки
+TrollButton.Position = UDim2.new(0.05 + (0.32 * ((#Tab:GetChildren() - 1) % 3)), 0, 0, math.floor((#Tab:GetChildren() - 1) / 3) * 45) -- Изменено для трех колонок
 TrollButton.Text = "Троллинг"
 TrollButton.TextSize = 22 -- Увеличение размера текста
 TrollButton.BorderSizePixel = 2 -- Устанавливаем рамку вокруг кнопки
@@ -123,5 +123,5 @@ TrollButton.BackgroundColor3 = Color3.new(math.random(), math.random(), math.ran
 TrollButton.BorderColor3 = Color3.new(0, 0, 0) -- Цвет рамки кнопок (по желанию)
 
 TrollButton.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/Chater72/Trolling-Free-admin/refs/heads/main/troll%20your%20friends.lua'))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Chater72/Trolling-Free-admin/refs/heads/main/troll%20your%20friends.lua"))()
 end)
