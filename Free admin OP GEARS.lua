@@ -85,14 +85,14 @@ local function AddButton(Name, GearId)
 end
 
 -- Добавление кнопок с gear в меню
-AddButton("Молот", 45177979)
+AddButton("Молот бога", 45177979)
 AddButton("Стол", 243788010)
 AddButton("Пылесос", 84418938)
 AddButton("Бомба", 28277486)
 AddButton("Тазер", 82357123)
 AddButton("Стекло", 71037101)
 AddButton("Вор", 117544573)
-AddButton("Молот Бога", 1046322934)
+AddButton("Молот судьи", 1046322934)
 
 -- Добавление новых gear в меню
 AddButton("Посох Зомби", 26421972)
@@ -110,7 +110,7 @@ AddButton("Запуск Елки", 330296114)
 AddButton("Запуск Перчи", 168142620)
 AddButton("Помощник", 84417104)
 AddButton("Справа Нуб", 22960435)
-
+AddButton("Пистолет бога", 17237675)
 -- Добавление кнопки "Троллинг"
 local TrollButton = Instance.new("TextButton")
 TrollButton.Parent = Tab
