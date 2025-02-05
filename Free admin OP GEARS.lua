@@ -7,9 +7,9 @@ Menu.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 local Tab = Instance.new("Frame")
 Tab.Name = "Tab"
 Tab.Parent = Menu
-Tab.BackgroundColor3 = Color3.new(1, 1, 1) -- Цвет фона вкладок (по желанию)
+Tab.BackgroundColor3 = Color3.new(0, 1, 0) -- Цвет фона вкладок (зеленый)
 Tab.Position = UDim2.new(0.5, -200, 0.5, -250) -- Позиция центрированного меню
-Tab.Size = UDim2.new(0, 400, 0, 500) -- Увеличение размера вкладок
+Tab.Size = UDim2.new(0, 400, 0, 600) -- Увеличение размера вкладок
 Tab.Active = true
 Tab.ClipsDescendants = true
 Tab.Visible = false -- Скрываем меню по умолчанию
@@ -17,7 +17,6 @@ Tab.Visible = false -- Скрываем меню по умолчанию
 -- Функция для перетаскивания
 local function makeDraggable(frame)
     local dragToggle = nil
-    local dragSpeed = 0.1
     local dragInput = nil
     local startPos = frame.Position
 
@@ -47,24 +46,24 @@ makeDraggable(Tab) -- Делаем вкладки перетаскиваемым
 -- Кнопка для открытия/закрытия меню
 local ToggleButton = Instance.new("TextButton")
 ToggleButton.Parent = Menu
-ToggleButton.Size = UDim2.new(0, 100, 0, 50) -- Изменено для компактности
-ToggleButton.Position = UDim2.new(1, -110, 0, 20) -- Перемещено в правый угол
-ToggleButton.Text = "Открыть меню"
-ToggleButton.TextSize = 20
+ToggleButton.Size = UDim2.new(0, 120, 0, 60) -- Увеличен размер кнопки
+ToggleButton.Position = UDim2.new(1, -130, 0, 20) -- Перемещено в правый угол
+ToggleButton.Text = "Меню"
+ToggleButton.TextSize = 24 -- Увеличение размера текста
+ToggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Цвет кнопки открытия (зеленый)
 
 -- Убираем перетаскивание у кнопки
 -- makeDraggable(ToggleButton) -- Удалено, чтобы не перетаскивалось
-
 ToggleButton.MouseButton1Click:Connect(function()
     Tab.Visible = not Tab.Visible
-    ToggleButton.Text = Tab.Visible and "Закрыть меню" or "Открыть меню"
+    ToggleButton.Text = Tab.Visible and "Закрыть" or "Открыть"
 end)
 
 -- Перехват клавиши Insert для открытия меню
 game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
     if not gameProcessed and input.KeyCode == Enum.KeyCode.Insert then
         Tab.Visible = not Tab.Visible
-        ToggleButton.Text = Tab.Visible and "Закрыть меню" or "Открыть меню"
+        ToggleButton.Text = Tab.Visible and "Закрыть" or "Открыть"
     end
 end)
 
@@ -72,32 +71,42 @@ end)
 local function AddButton(Name, GearId)
     local Button = Instance.new("TextButton")
     Button.Parent = Tab
-    Button.Size = UDim2.new(0.4, 0, 0, 30) -- Устанавливаем ширину кнопки для двух столбцов
-    Button.Position = UDim2.new(0.05 + (0.45 * ((#Tab:GetChildren() - 1) % 2)), 0, 0, math.floor((#Tab:GetChildren() - 1) / 2) * 35) -- Изменено для двух колонок
+    Button.Size = UDim2.new(0.4, 0, 0, 40) -- Увеличиваем высоту кнопки
+    Button.Position = UDim2.new(0.05 + (0.45 * ((#Tab:GetChildren() - 1) % 2)), 0, 0, math.floor((#Tab:GetChildren() - 1) / 2) * 45) -- Изменено для двух колонок
     Button.Text = Name
-    Button.TextSize = 20 -- Увеличение размера текста
+    Button.TextSize = 22 -- Увеличение размера текста
+    Button.BorderSizePixel = 2 -- Устанавливаем рамку вокруг кнопки
+    Button.BackgroundColor3 = Color3.new(math.random(), math.random(), math.random()) -- Цвет фона кнопок (случайный)
+    Button.BorderColor3 = Color3.new(0, 0, 0) -- Цвет рамки кнопок (по желанию)
+
     Button.MouseButton1Click:Connect(function()
         game.Players:Chat(":gear me " .. GearId)
     end)
 end
 
 -- Добавление кнопок с gear в меню
-AddButton("Hammer", 45177979)
-AddButton("Table", 243788010)
-AddButton("Vacuum", 84418938)
-AddButton("Bomb", 28277486)
-AddButton("Taser", 82357123)
-AddButton("Za warudo", 71037101)
-AddButton("Coin Thief", 117544573)
-AddButton("Judges Hammer", 1046322934)
+AddButton("Молот", 45177979)
+AddButton("Стол", 243788010)
+AddButton("Пылесос", 84418938)
+AddButton("Бомба", 28277486)
+AddButton("Тазер", 82357123)
+AddButton("Стекло", 71037101)
+AddButton("Вор", 117544573)
+AddButton("Молот Бога", 1046322934)
 
 -- Добавление новых gear в меню
-AddButton("Zombie Staff", 26421972)
-AddButton("Fire Staff", 32858741)
-AddButton("Snowball", 19328185)
-AddButton("Horn", 127506257)
-AddButton("Remote Bomb", 33383241)
-AddButton("Gravity Hammer", 33866846)
-AddButton("Black Ray", 78005009)
-AddButton("Rainbow Sword", 159229806)
-AddButton("Potato", 25741198)
+AddButton("Посох Зомби", 26421972)
+AddButton("Посох Огня", 32858741)
+AddButton("Снежок", 19328185)
+AddButton("Рог", 127506257)
+AddButton("Мина", 33383241)
+AddButton("летающий молот", 33866846)
+AddButton("Черный Луч", 78005009)
+AddButton("Меч бога", 159229806)
+AddButton("Картошка", 25741198)
+
+-- Добавление новых кнопок
+AddButton("Запуск Елки", 330296114)
+AddButton("Запуск Перчи", 168142620)
+AddButton("Помощник", 84417104)
+AddButton("Справа Нуб", 22960435)
