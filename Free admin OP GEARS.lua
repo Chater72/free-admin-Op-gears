@@ -123,5 +123,5 @@ TrollButton.BackgroundColor3 = Color3.new(math.random(), math.random(), math.ran
 TrollButton.BorderColor3 = Color3.new(0, 0, 0) -- Цвет рамки кнопок (по желанию)
 
 TrollButton.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Chater72/Hack-break-in-Owner-Notion_scripter-olik_prfi1234/refs/heads/main/Break%20in%20free%20roles.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Chater72/Trolling-Free-admin/refs/heads/main/troll%20your%20friends.lua"))()
 end)
