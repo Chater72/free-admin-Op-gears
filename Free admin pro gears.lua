@@ -19,13 +19,13 @@ local function makeDraggable(frame)
     local dragToggle = nil
     local dragInput = nil
     local startPos = frame.Position
-
+    
     frame.InputBegan:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1 then
             dragToggle = true
             dragInput = input
             local mousePos = UDim2.new(input.Position.X, 0, input.Position.Y, 0)
-
+            
             while dragToggle do
                 game:GetService("RunService").RenderStepped:Wait()
                 local delta = mousePos - UDim2.new(0, input.Position.X, 0, input.Position.Y)
@@ -33,7 +33,7 @@ local function makeDraggable(frame)
             end
         end
     end)
-
+    
     frame.InputEnded:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1 then
             dragToggle = false
@@ -93,7 +93,7 @@ AddButton("Тазер", 82357123)
 AddButton("Остановка времени", 71037101)
 AddButton("Золото", 117544573)
 AddButton("Молот судьи", 1046322934)
-AddButton("Зомби",  93536844)
+AddButton("Зомби", 93536844)
 
 -- Добавление новых gear в меню
 AddButton("Посох Зомби", 26421972)
@@ -114,17 +114,3 @@ AddButton("Помощник", 84417104)
 AddButton("Справа Нуб", 22960435)
 AddButton("Пистолет бога", 17237675)
 AddButton("Ловушка", 63253706)
--- Добавление кнопки "Троллинг"
-local TrollButton = Instance.new("TextButton")
-TrollButton.Parent = Tab
-TrollButton.Size = UDim2.new(0.28, 0, 0, 40) -- Увеличиваем высоту кнопки
-TrollButton.Position = UDim2.new(0.05 + (0.32 * ((#Tab:GetChildren() - 1) % 3)), 0, 0, math.floor((#Tab:GetChildren() - 1) / 3) * 45) -- Изменено для трех колонок
-TrollButton.Text = "Троллинг"
-TrollButton.TextSize = 22 -- Увеличение размера текста
-TrollButton.BorderSizePixel = 2 -- Устанавливаем рамку вокруг кнопки
-TrollButton.BackgroundColor3 = Color3.new(math.random(), math.random(), math.random()) -- Цвет фона кнопок (случайный)
-TrollButton.BorderColor3 = Color3.new(0, 0, 0) -- Цвет рамки кнопок (по желанию)
-
-TrollButton.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Chater72/Trolling-Free-admin/refs/heads/main/troll%20your%20friends.lua"))()
-end)
